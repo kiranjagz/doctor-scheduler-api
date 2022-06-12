@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Doctor.Scheduler.Api", "Doc
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{23D9270B-CAFB-4000-95A0-6688F992E9AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doctor.Scheduler.Tests", "Doctor.Scheduler.Tests\Doctor.Scheduler.Tests.csproj", "{C2D9ECE3-25CE-412C-94E5-A2B6CBF284F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Doctor.Scheduler.Tests", "Doctor.Scheduler.Tests\Doctor.Scheduler.Tests.csproj", "{C2D9ECE3-25CE-412C-94E5-A2B6CBF284F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
