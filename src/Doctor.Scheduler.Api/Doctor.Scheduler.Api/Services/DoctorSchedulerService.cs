@@ -19,17 +19,25 @@ namespace Doctor.Scheduler.Api.Services
     public class DoctorSchedulerService : IDoctorSchedulerService
     {
         private readonly IDoctorSchedulerRespository _doctorSchedulerRespository;
+        private readonly IAttendeesRepository _attendeesRepository;
 
-        public DoctorSchedulerService(IDoctorSchedulerRespository doctorSchedulerRespository)
+        public DoctorSchedulerService(IDoctorSchedulerRespository doctorSchedulerRespository,
+            IAttendeesRepository attendeesRepository)
         {
             _doctorSchedulerRespository = doctorSchedulerRespository;
+            _attendeesRepository = attendeesRepository;
         }
 
         public bool CreateEvent(EventModelRequest eventModelRequest)
         {
+            var attendee = _attendeesRepository.GetAttendeeById(eventModelRequest.Name);
+
+            if (attendee == null)
+                return false;
+
             var events = new Events()
             {
-                AttendeesId = eventModelRequest.AttendeesId,
+                AttendeesId = attendee.AttendeesId,
                 DateCreated = DateTime.Now,
                 Description = eventModelRequest.Description,
                 StartTime = eventModelRequest.StartTime,
@@ -51,18 +59,35 @@ namespace Doctor.Scheduler.Api.Services
 
         public IEnumerable<EventModels> GetAllEvents()
         {
-            var result = _doctorSchedulerRespository.GetAllEvents()
-                .Select(x => new EventModels
-                {
-                    AttendeesId = x.AttendeesId,
-                    DateCreated = x.DateCreated,
-                    Description = x.Description,
-                    EndTime = x.EndTime,
-                    StartTime = x.StartTime,
-                    Title = x.Title
-                }).ToList();
+            var eventModels = new List<EventModels>();
 
-            return result;
+            var result = _doctorSchedulerRespository.GetAllEvents().ToList();
+
+            result.ForEach(item =>
+            {
+                var attendee = _attendeesRepository.GetAttendeeById(item.AttendeesId);
+
+                var eventModel = new EventModels()
+                {
+                    DateCreated = item.DateCreated,
+                    Description = item.Description,
+                    Title = item.Title,
+                    StartTime = item.StartTime,
+                    EndTime = item.EndTime,
+                    AttendeeModel = new AttendeeModel()
+                    {
+                        Address = attendee.Address,
+                        Email = attendee.Email,
+                        IdNumber = attendee.IdNumber,
+                        Name = attendee.Name,
+                        AttendeesId = attendee.AttendeesId
+                    }
+                };
+
+                eventModels.Add(eventModel);
+            });
+
+            return eventModels;
         }
     }
 }

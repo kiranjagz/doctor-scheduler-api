@@ -2,6 +2,8 @@
 using Doctor.Scheduler.Api.Services;
 using Doctor.Scheduler.Api.Services.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -22,9 +24,18 @@ namespace Doctor.Scheduler.Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var results = _SchedulerService.GetAllEvents();
+            try
+            {
+                var results = _SchedulerService.GetAllEvents().ToList();
 
-            return Ok(results);
+                if (!results.Any()) return BadRequest("Did not return any elements for events");
+
+                return Ok(results);
+            }
+            catch (Exception e)
+            {
+                return BadRequest($"An error has occurred with getting all events: {e.Message}");
+            }
         }
 
         // GET api/<SchedulerController>/5
@@ -38,24 +49,46 @@ namespace Doctor.Scheduler.Api.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] EventModelRequest eventModelRequest)
         {
-            var results = _SchedulerService.CreateEvent(eventModelRequest);
+            try
+            {
+                var hasInserted = _SchedulerService.CreateEvent(eventModelRequest);
 
-            return Ok(results);
-        }
-
-        // PUT api/<SchedulerController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
+                return Ok(new
+                {
+                    message = "A request has been sent to try to insert a row",
+                    hasInserted = hasInserted
+                });
+            }
+            catch (Exception e)
+            {
+                return BadRequest($"An error has occurred with creating an event: {e.Message}");
+            }
         }
 
         // DELETE api/<SchedulerController>/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var results = _SchedulerService.DeleteEvent(id);
+            try
+            {
+                var hasDeleted = _SchedulerService.DeleteEvent(id);
 
-            return Ok(results);
+                return Ok(new
+                {
+                    message = "A request has been sent to try to delete a row",
+                    hasDeleted = hasDeleted
+                });
+            }
+            catch (Exception e)
+            {
+                return BadRequest($"An error has occurred with deleting an event: {e.Message}");
+            }
+        }
+
+        // PUT api/<SchedulerController>/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] string value)
+        {
         }
     }
 }

@@ -45,6 +45,7 @@ namespace Doctor.Scheduler.Api
             });
 
             services.AddSingleton<IDoctorSchedulerRespository, DoctorSchedulerRepository>();
+            services.AddSingleton<IAttendeesRepository, AttendeesRepository>();
             services.AddSingleton<IDoctorSchedulerService, DoctorSchedulerService>();
         }
 

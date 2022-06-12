@@ -4,14 +4,16 @@ using Doctor.Scheduler.Api.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Doctor.Scheduler.Api.Migrations
 {
     [DbContext(typeof(DoctorSchedulerDbContext))]
-    partial class DoctorSchedulerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220612073604_AddAttendees")]
+    partial class AddAttendees
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

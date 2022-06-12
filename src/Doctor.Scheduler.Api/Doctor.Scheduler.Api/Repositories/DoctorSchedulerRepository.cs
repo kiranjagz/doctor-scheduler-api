@@ -42,12 +42,14 @@ namespace Doctor.Scheduler.Api.Repositories
             var isDeleted = _doctorSchedulerDbContext.Events.Remove(result);
             _doctorSchedulerDbContext.SaveChanges();
 
-            return isDeleted != null ? true : false;
+            return isDeleted != null;
         }
 
         public List<Events> GetAllEvents()
         {
-            return _doctorSchedulerDbContext.Events.ToList();
+            var results = _doctorSchedulerDbContext.Events.ToList();
+
+            return results;
         }
 
         public List<Events> GetEventById(Events AttendeeEventId)
