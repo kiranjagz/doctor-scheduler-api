@@ -14,6 +14,7 @@ namespace Doctor.Scheduler.Api.Services
         bool DeleteEvent(int eventId);
 
         IEnumerable<EventModels> GetAllEvents();
+        IEnumerable<EventModels> GetEventById(int eventId);
     }
 
     public class DoctorSchedulerService : IDoctorSchedulerService
@@ -69,6 +70,7 @@ namespace Doctor.Scheduler.Api.Services
 
                 var eventModel = new EventModels()
                 {
+                    EventId = item.EventId,
                     DateCreated = item.DateCreated,
                     Description = item.Description,
                     Title = item.Title,
@@ -88,6 +90,13 @@ namespace Doctor.Scheduler.Api.Services
             });
 
             return eventModels;
+        }
+
+        public IEnumerable<EventModels> GetEventById(int eventId)
+        {
+            var results = GetAllEvents();
+
+            return results.Where(evt => evt.EventId == eventId);
         }
     }
 }

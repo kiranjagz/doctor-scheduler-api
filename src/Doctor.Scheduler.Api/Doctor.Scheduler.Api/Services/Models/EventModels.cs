@@ -4,6 +4,7 @@ namespace Doctor.Scheduler.Api.Services.Models
 {
     public class EventModels
     {
+        public int EventId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime DateCreated { get; set; }

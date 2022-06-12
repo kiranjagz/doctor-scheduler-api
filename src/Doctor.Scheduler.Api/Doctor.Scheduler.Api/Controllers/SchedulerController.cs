@@ -40,9 +40,20 @@ namespace Doctor.Scheduler.Api.Controllers
 
         // GET api/<SchedulerController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            try
+            {
+                var results = _SchedulerService.GetEventById(id);
+
+                if (!results.Any()) return BadRequest($"Did not return any elements for events with id: {id}");
+
+                return Ok(results);
+            }
+            catch (Exception e)
+            {
+                return BadRequest($"An error has occurred with getting all an event with id: {id}:: error :: {e.Message}");
+            }
         }
 
         // POST api/<SchedulerController>
