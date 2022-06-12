@@ -11,6 +11,8 @@ namespace Doctor.Scheduler.Api.Services
     {
         bool CreateEvent(EventModelRequest eventModelRequest);
 
+        bool DeleteEvent(int eventId);
+
         IEnumerable<EventModels> GetAllEvents();
     }
 
@@ -36,6 +38,13 @@ namespace Doctor.Scheduler.Api.Services
             };
 
             var result = _doctorSchedulerRespository.CreateEvent(events);
+
+            return result;
+        }
+
+        public bool DeleteEvent(int eventId)
+        {
+            var result = _doctorSchedulerRespository.DeleteEvent(eventId);
 
             return result;
         }

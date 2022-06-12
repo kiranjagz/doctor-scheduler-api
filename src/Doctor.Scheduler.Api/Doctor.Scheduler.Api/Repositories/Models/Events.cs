@@ -15,5 +15,6 @@ namespace Doctor.Scheduler.Api.Repositories.Models
         public DateTime EndTime { get; set; }
         [ForeignKey("AttendeesId")]
         public int AttendeesId { get; set; }
+        public Attendees Attendees { get; set; }
     }
 }

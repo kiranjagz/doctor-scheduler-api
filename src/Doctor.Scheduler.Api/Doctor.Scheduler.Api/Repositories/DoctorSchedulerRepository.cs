@@ -9,7 +9,7 @@ namespace Doctor.Scheduler.Api.Repositories
     {
         bool CreateEvent(Events AttendeeEvent);
         Events UpdateEvent(Events AttendeeEvent);
-        bool DeleteEvent(Events eventId);
+        bool DeleteEvent(int eventId);
         List<Events> GetAllEvents();
         List<Events> GetEventById(Events AttendeeEventId);
     }
@@ -35,11 +35,12 @@ namespace Doctor.Scheduler.Api.Repositories
             return false;
         }
 
-        public bool DeleteEvent(Events eventId)
+        public bool DeleteEvent(int eventId)
         {
             var result =  _doctorSchedulerDbContext.Find<Events>(eventId);
 
             var isDeleted = _doctorSchedulerDbContext.Events.Remove(result);
+            _doctorSchedulerDbContext.SaveChanges();
 
             return isDeleted != null ? true : false;
         }
@@ -51,7 +52,9 @@ namespace Doctor.Scheduler.Api.Repositories
 
         public List<Events> GetEventById(Events AttendeeEventId)
         {
-            return (List<Events>)_doctorSchedulerDbContext.Events.ToList()
+            return (List<Events>)_doctorSchedulerDbContext
+                .Events
+                .ToList()
                 .Where(x => x.EventId == AttendeeEventId.EventId);
         }
 

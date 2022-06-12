@@ -1,4 +1,5 @@
 using Doctor.Scheduler.Api.Repositories;
+using Doctor.Scheduler.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -42,6 +43,9 @@ namespace Doctor.Scheduler.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Doctor.Scheduler.Api", Version = "v1" });
             });
+
+            services.AddSingleton<IDoctorSchedulerRespository, DoctorSchedulerRepository>();
+            services.AddSingleton<IDoctorSchedulerService, DoctorSchedulerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
