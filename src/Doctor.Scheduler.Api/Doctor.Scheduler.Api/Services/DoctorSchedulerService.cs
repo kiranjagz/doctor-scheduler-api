@@ -31,7 +31,7 @@ namespace Doctor.Scheduler.Api.Services
 
         public bool CreateEvent(EventModelRequest eventModelRequest)
         {
-            var attendee = _attendeesRepository.GetAttendeeById(eventModelRequest.Name);
+            var attendee = _attendeesRepository.GetAttendeeByName(eventModelRequest.Name);
 
             if (attendee == null)
                 return false;

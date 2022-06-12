@@ -6,7 +6,7 @@ namespace Doctor.Scheduler.Api.Repositories
     public interface IAttendeesRepository
     {
         Attendees GetAttendeeById(int attendeeId);
-        Attendees GetAttendeeById(string attendeeName);
+        Attendees GetAttendeeByName(string attendeeName);
     }
     public class AttendeesRepository : IAttendeesRepository
     {
@@ -22,7 +22,7 @@ namespace Doctor.Scheduler.Api.Repositories
             return _doctorSchedulerDbContext.Find<Attendees>(attendeeId);
         }
 
-        public Attendees GetAttendeeById(string attendeeName)
+        public Attendees GetAttendeeByName(string attendeeName)
         {
             return _doctorSchedulerDbContext.Attendees.SingleOrDefault(x => x.Name.ToLower() == attendeeName.ToLower());
         }
