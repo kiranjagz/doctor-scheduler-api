@@ -1,7 +1,9 @@
-﻿namespace Doctor.Scheduler.Api.Services
+﻿using Doctor.Scheduler.Api.Services.Models;
+
+namespace Doctor.Scheduler.Api.Services
 {
     interface INotificationService
     {
-        bool SendNotification(string message);
+        NotificationEventModel SendNotification(string message);
     }
 }

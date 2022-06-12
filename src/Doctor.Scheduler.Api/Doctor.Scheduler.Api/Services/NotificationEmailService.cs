@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Doctor.Scheduler.Api.Services.Models;
+using System;
 
 namespace Doctor.Scheduler.Api.Services
 {
@@ -9,11 +10,16 @@ namespace Doctor.Scheduler.Api.Services
 
         }
 
-        public bool SendNotification(string message)
+        public NotificationEventModel SendNotification(string message)
         {
-            Console.WriteLine($"Send message via email: {message}");
+            // todo pass repo save and stragegy to send message
+            var smsMessage = $"Email message with: {message}";
 
-            return true;
+            return new NotificationEventModel
+            {
+                Message = smsMessage,
+                IsSent = true
+            };
         }
     }
 }

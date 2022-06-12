@@ -100,6 +100,7 @@ namespace Doctor.Scheduler.Api.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
+            // todo if I get time to come back to implement this function
         }
     }
 }
