@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{23D9270B-CAF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Doctor.Scheduler.Tests", "Doctor.Scheduler.Tests\Doctor.Scheduler.Tests.csproj", "{C2D9ECE3-25CE-412C-94E5-A2B6CBF284F6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doctor.Scheduler.App", "Doctor.Scheduler.App\Doctor.Scheduler.App.csproj", "{B14998D9-6530-4EFB-BDA7-E7563669BE8D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{C2D9ECE3-25CE-412C-94E5-A2B6CBF284F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2D9ECE3-25CE-412C-94E5-A2B6CBF284F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2D9ECE3-25CE-412C-94E5-A2B6CBF284F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B14998D9-6530-4EFB-BDA7-E7563669BE8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B14998D9-6530-4EFB-BDA7-E7563669BE8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B14998D9-6530-4EFB-BDA7-E7563669BE8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B14998D9-6530-4EFB-BDA7-E7563669BE8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +36,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{167E4C1E-206A-491A-A9D0-88FF68DC9834} = {23D9270B-CAFB-4000-95A0-6688F992E9AF}
 		{C2D9ECE3-25CE-412C-94E5-A2B6CBF284F6} = {23D9270B-CAFB-4000-95A0-6688F992E9AF}
+		{B14998D9-6530-4EFB-BDA7-E7563669BE8D} = {23D9270B-CAFB-4000-95A0-6688F992E9AF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6F1BB5A5-1DFD-4CEC-9789-EB8C4891BF68}
